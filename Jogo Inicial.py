@@ -7,7 +7,7 @@ pygame.display.set_caption('THE ERAS GAME')
 tempo = pygame.time.Clock()
 
 # IMAGENS
-imagem_inicial = pygame.image.load('Imagens/fundo_inicial.jpeg')
+imagem_inicial = pygame.image.load('/workspaces/PP/Imagens/fundo_inicial.jpeg')
 
 # LOOP PRINCIPAL
 game = True
