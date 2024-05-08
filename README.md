@@ -1,4 +1,4 @@
-# Campo minado
+# PP Game
 ## Joana Lessa, Maria Clara Garcia, Valentina Meirelles
 
  ### Projeto Final de DeSoft
