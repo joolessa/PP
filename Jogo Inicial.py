@@ -3,7 +3,7 @@ import pygame
 # Iniciando Tela
 pygame.init()
 tela = pygame.display.set_mode((1152,800))
-pygame.display.set_caption('THE ERAS GAME')
+pygame.display.set_caption('PP GAME')
 tempo = pygame.time.Clock()
 
 # IMAGENS
