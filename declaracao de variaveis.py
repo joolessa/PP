@@ -1,25 +1,11 @@
-import pygame
+# Constantes para o jogo
+tamanho_tela = (1300,800)
+largura_personagem = 50
+altura_personagem = 50
 
-# Iniciando Tela
-pygame.init()
-tela = pygame.display.set_mode((1300,800))
-pygame.display.set_caption('PP GAME')
-tempo = pygame.time.Clock()
-
-# IMAGENS
-fundo = pygame.Surface((1300,800))
-fundo.fill('Yellow')
-
-# LOOP PRINCIPAL
-game = True
-while game:
-    for evento in pygame.event.get():
-        if evento.type == pygame.QUIT:
-            game = False
-    tela.blit(fundo, (0,0))
-
-    pygame.display.update()
-    tempo.tick(60)
-
-# FINALIZAÇÃO
-pygame.quit()
+# Gravidade quanto maior o valor mais rapido o personagem cai
+gravidade = 3
+# Sensibilidade do som é o quanto o som precisa ser alto para o personagem subir
+sensi_som = 1
+# Amortecimento do som quanto maior o valor mais rapido o personagem para de cair
+amortecimento = 0.95
