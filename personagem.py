@@ -1,12 +1,24 @@
 import pygame
-import sounddevice as sd
-import numpy as np
 
+tamanho_tela = (1300,800)
+largura_personagem = 50
+altura_personagem = 50
 
-l_personagem = 50
-h_personagem = 50
+pygame.init()
+janela = pygame.display.set_mode(tamanho_tela)
+pygame.display.set_caption('PP Game')
 
-minion = pygame.image.load('Imagens/Minion Bob.png')
-pygame.Rect(
-        TAMANHO_DA_TELA[0] // 4, TAMANHO_DA_TELA[1] - ALTURA_PERSONAGEM, LARGURA_PERSONAGEM, ALTURA_PERSONAGEM
-    )
+imagem_fundo = pygame.image.load('/workspaces/PP/Imagens/Fundo.png')
+minion = pygame.image.load("/workspaces/PP/Imagens/Minion Bob.png")
+
+game = True
+while game:
+    for evento in pygame.event.get():
+        if evento == pygame.QUIT:
+            game = False
+    
+    janela.blit(imagem_fundo, (0,0))
+    janela.blit(minion, (tamanho_tela[0] // 4, tamanho_tela[1] - altura_personagem, largura_personagem, altura_personagem
+    ))
+
+    pygame.display.update()
