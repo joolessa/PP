@@ -13,9 +13,19 @@ sensi_som = 1 # quanto o som precisa ser alto para o personagem subir
 amortecimento = 0.95 # amortecimento do som quanto maior o valor mais rapido o personagem para de cair
 
 # FUNÇÕES
-#
-#
-#
+#def obter_volume_microfone(duracao=0.05, fs=44100):
+    gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
+    sd.wait()
+    amplitude = np.max(np.abs(gravacao))
+    return amplitude
+#def atualizar_tela(tela, fonte, retangulo_personagem, volume):
+    tela.fill((255, 255, 255))
+    pygame.draw.rect(tela, (0, 0, 255), retangulo_personagem)
+    texto_volume = fonte.render(f"Volume: {volume:.2f}", True, (0, 0, 0))
+    retangulo_texto = texto_volume.get_rect()
+    retangulo_texto.topright = (TAMANHO_DA_TELA[0] - 10, 10)
+    tela.blit(texto_volume, retangulo_texto)
+    pygame.display.update()
 
 # EXECUÇÃO DO JOGO
 pygame.init()
