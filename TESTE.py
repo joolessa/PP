@@ -10,7 +10,7 @@ tempo = pygame.time.Clock()
 fundo = pygame.image.load('Imagens/Fundo.png')
 piso = pygame.image.load('Imagens/piso.PNG')
 teto = pygame.image.load('Imagens/teto.PNG')
-minion = pygame.image.load('Imagens/teto.PNG')
+minion = pygame.image.load('Imagens/minion.png')
 
 game= True
 while game:
@@ -19,8 +19,8 @@ while game:
             game = False
 
     tela.blit(fundo, (0,0))
-    tela.blit(piso, (0,700))
-    tela.blit(teto, (0,700))
+    tela.blit(piso, (0,300))
+    tela.blit(teto, (0,1300))
 
     pygame. display. update()
     tempo. tick(60)
