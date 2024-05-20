@@ -1,24 +1,19 @@
 import pygame
 
-tamanho_tela = (1300,800)
-largura_personagem = 50
-altura_personagem = 50
+class Minion(pygame.sprite.Sprite):
 
-pygame.init()
-janela = pygame.display.set_mode(tamanho_tela)
-pygame.display.set_caption('PP Game')
+    def __init__(self, assets, x, y):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
 
-imagem_fundo = pygame.image.load('/workspaces/PP/Imagens/Fundo.png')
-minion = pygame.image.load("/workspaces/PP/Imagens/Minion Bob.png")
+        self.image = assets['minion']
+        self.rect = self.image.get_rect()
+        self.rect.centerx = x
+        self.rect.bottom = y
+        self.speedx = 0
+        self.assets = assets
 
-game = True
-while game:
-    for evento in pygame.event.get():
-        if evento == pygame.QUIT:
-            game = False
-    
-    janela.blit(imagem_fundo, (0,0))
-    janela.blit(minion, (tamanho_tela[0] // 4, tamanho_tela[1] - altura_personagem, largura_personagem, altura_personagem
-    ))
+    def update(self):
+        # Atualização da posição da nave
+        self.rect.x += self.speedx
 
-    pygame.display.update()
