@@ -7,8 +7,9 @@ tela = pygame.display.set_mode(tamanho_tela)
 pygame.display.set_caption ('PP')
 tempo = pygame.time.Clock()
 
-fundo = pygame.image.load('/workspaces/PP/Imagens/Fundo.png')
-piso = pygame.image.load('/workspaces/PP/Imagens/piso.PNG')
+fundo = pygame.image.load('Imagens/Fundo.png')
+piso = pygame.image.load('Imagens/piso.PNG')
+teto = pygame.image.load('Imagens/teto.PNG')
 
 game= True
 while game:
