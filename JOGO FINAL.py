@@ -13,7 +13,7 @@ sensi_som = 1 # quanto o som precisa ser alto para o personagem subir
 amortecimento = 0.95 # amortecimento do som quanto maior o valor mais rapido o personagem para de cair
 
 # FUNÇÕES
-def obter_volume_microfone(duracao=0.05, fs=44100):
+def volume_microfone(duracao=0.05, fs=44100):
     gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
     sd.wait()
     amplitude = np.max(np.abs(gravacao))
@@ -53,7 +53,7 @@ while game:
   janela.blit(minion, (tamanho_tela[0] // 4, tamanho_tela[1] - altura_personagem, largura_personagem, altura_personagem))
         
   # Multiplicando por 20 para aumentar a sensibilidade do som
-   #  volume = volume_microfone() * 20
+  volume = volume_microfone() * 20
   
   # Se o volume for maior que a sensibilidade do som o personagem sobe
   if volume > sensi_som:
