@@ -1,6 +1,8 @@
 import pygame
 
 tamanho_tela = (1300,800)
+largura_personagem = 50
+altura_personagem = 50
 
 pygame.init()
 tela = pygame.display.set_mode(tamanho_tela)
@@ -21,6 +23,7 @@ while game:
     tela.blit(fundo, (0,0))
     tela.blit(piso, (0,300))
     tela.blit(teto, (0,1300))
+    tela.blit(minion, (tamanho_tela[0] // 4, tamanho_tela[1] - altura_personagem, largura_personagem, altura_personagem))
 
     pygame. display. update()
     tempo. tick(60)
