@@ -15,9 +15,9 @@ assets = load_assets()
 all_sprites = pygame.sprite.Group()
 
 game = True
-minion = Minion(assets, altura_personagem, largura_personagem)
-piso = Piso(assets, (0,height-100))
-teto = Teto(assets, (0,130))
+minion = Minion(assets, 200, 200)
+piso = Piso(assets,650,height)
+teto = Teto(assets, 650,100)
 all_sprites.add(minion,piso,teto)
 
 while game:
