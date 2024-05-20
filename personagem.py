@@ -14,6 +14,5 @@ class Minion(pygame.sprite.Sprite):
         self.assets = assets
 
     def update(self):
-        # Atualização da posição da nave
         self.rect.x += self.speedx
 
