@@ -8,6 +8,6 @@ def load_assets():
     assets['fundo'] = pygame.image.load('Imagens/Fundo.png')
     assets['piso'] = pygame.image.load('Imagens/piso.PNG')
     assets['teto'] = pygame.image.load('Imagens/teto.PNG')
-    assets['obstaculos'] = pygame.image.load('Imagens/tobstaculo.png')
+    assets['obstaculos'] = pygame.image.load('Imagens/obstaculo.png')
     
     return assets
