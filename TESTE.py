@@ -3,10 +3,6 @@ from personagem import *
 from constantes import *
 from assets import load_assets
 
-tamanho_tela = (1300,800)
-largura_personagem = 50
-altura_personagem = 50
-
 pygame.init()
 tela = pygame.display.set_mode(tamanho_tela)
 pygame.display.set_caption ('PP')
@@ -17,11 +13,10 @@ assets = load_assets()
 all_sprites = pygame.sprite.Group()
 
 game = True
-minion = Minion(assets, 100, 100)
+minion = Minion(assets, altura_personagem, largura_personagem)
 all_sprites.add(minion)
 
 while game:
-
     tempo. tick(60)
     for event in pygame.event.get():
         if event. type == pygame.QUIT:
