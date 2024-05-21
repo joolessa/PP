@@ -4,6 +4,7 @@ from piso import *
 from teto import *
 from constantes import *
 from assets import load_assets
+from tela_inicial import *
 
 pygame.init()
 tela = pygame.display.set_mode(tamanho_tela)
@@ -17,13 +18,13 @@ all_sprites = pygame.sprite.Group()
 game = True
 minion = Minion(assets, 200, 200)
 piso = Piso(assets,650,height)
-teto = Teto(assets, 650,100)
+teto = Teto(assets, 650,70)
 all_sprites.add(minion,piso,teto)
 
 while game:
     tempo. tick(60)
     for event in pygame.event.get():
-        if event. type == pygame.QUIT:
+        if event.type == pygame.QUIT:
             game = False
 
     all_sprites.update()
