@@ -10,12 +10,10 @@ def tela_inicial(tela):
 
     # Renderize o texto desejado
     texto1 = fonte.render("Bem Vindo ao PP game!", True, branco)
-    texto2 = fonte.render('Clique para iniciar', True, branco)
-
+    
     # Posicione o texto no centro da tela
     pos_texto1 = texto1.get_rect(center=(width// 2, height // 2))
-    pos_texto2 = texto1.get_rect(center=(width// 2, (height // 2)-4))
-
+    
     #trecho extraido de https://dessoft.insper-comp.com.br/conteudo/projeto
     running = True
     while running:
@@ -34,7 +32,6 @@ def tela_inicial(tela):
         tela.fill(preto)
 
         tela.blit(texto1, pos_texto1)
-        tela.blit(texto2, pos_texto2)
 
         pygame.display.flip()
 
