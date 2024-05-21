@@ -3,24 +3,15 @@ import random
 from assets import *
 from constantes import *
 
-class Meteor(pygame.sprite.Sprite):
-    def __init__(self):
-        self.image = pygame.image.load('Imagens/obstaculo.png').convert_alpha()
-        self.image = pygame.transform.scale(self.image, (largura_obstaculo, largura_personagem))
-        self.rect = self.image.get_rect()
-        self.rect.x = random.randint(0, width-largura_obstaculo)
-        self.rect.y = random.randint(-100, -altura_obstaculo)
-        self.speedx = random.randint(-3, 3)
-        self.speedy = random.randint(2, 9)
-
+class Obstaculo(pygame.sprite.Sprite):
+    # velocidade do triangulo
+    def _init_(self, speed):
+        super()._init_()  #inicialização correta
+        self.image = pygame.transform.scale(pygame.image.load('Imagens/obstaculo.png'), (50, 50))  # imagem do obstáculo
+        # 'x' é largura da tela (começando fora dela), e 'y' uma posição aleatória 
+        self.rect = self.image.get_rect(x=width, y=random.randint(50, height - 50))
+        self.speed = speed  # velocidade do obstáculo
     def update(self):
-        # Atualizando a posição do meteoro
-        self.rect.x += self.speedx
-        self.rect.y += self.speedy
-        # Se o meteoro passar do final da tela, volta para cima e sorteia
-        # novas posições e velocidades
-        if self.rect.top > height or self.rect.right < 0 or self.rect.left > width:
-            self.rect.x = random.randint(0, width-largura_obstaculo)
-            self.rect.y = random.randint(-100, -altura_obstaculo)
-            self.speedx = random.randint(-3, 3)
-            self.speedy = random.randint(2, 9)
+        self.rect.x -= self.speed
+        if self.rect.right < 0:
+            self.kill()

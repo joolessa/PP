@@ -1,7 +1,6 @@
 import pygame
 
 class Minion(pygame.sprite.Sprite):
-
     def __init__(self, assets, x, y):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)

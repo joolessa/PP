@@ -5,36 +5,40 @@ from teto import *
 from constantes import *
 from assets import load_assets
 from tela_inicial import *
+from obstaculos import *
 
-pygame.init()
-tela = pygame.display.set_mode(tamanho_tela)
-pygame.display.set_caption ('PP')
-tempo = pygame.time.Clock()
+def tela_de_jogo(tela):
 
-assets = load_assets()
+    # funcao do jogo pra ajuste da velocidade
+    tempo = pygame.time.Clock()
 
-all_sprites = pygame.sprite.Group()
+    # Carrega o arquivo assets.py
+    assets = load_assets()
 
-game = True
-minion = Minion(assets, 200, 200)
-piso = Piso(assets,650,height)
-teto = Teto(assets, 650,70)
-all_sprites.add(minion,piso,teto)
+    all_sprites = pygame.sprite.Group()
+    groups = {}
+    groups['all_sprites'] = all_sprites
 
-while game:
-    tempo. tick(60)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game = False
+    game = True
+    minion = Minion(assets, 200, 200)
+    piso = Piso(assets,650,height)
+    teto = Teto(assets, 650,70)
+    all_sprites.add(minion,piso,teto)
 
-    all_sprites.update()
+    while game:
+        tempo.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                game = False
 
-    tela.fill((0, 0, 0))
+        all_sprites.update()
 
-    tela.blit(assets['fundo'], (0,0))
+        tela.fill((0, 0, 0))
 
-    all_sprites.draw(tela)
+        tela.blit(assets['fundo'], (0,0))
 
-    pygame. display. update()
+        all_sprites.draw(tela)
 
-pygame.quit()
+        pygame. display. update()
+
+    pygame.quit()
