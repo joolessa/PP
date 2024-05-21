@@ -13,7 +13,6 @@ pygame.display.set_caption('PP GAME')
 
 state = INICIAR
 while state != FIM:
-    
     if state == INICIAR: #leva até a tela de inicio
         state = tela_inicial(tela)
     if state == JOGO: # vai para tela do jogo
