@@ -9,57 +9,39 @@ from espinhos import Espinhos
 from constantes import *
 from assets import load_assets
 from tela_inicial import *
+from tela_final import game_over
 
 def volume_microfone(duracao=0.05, fs=44100):
     gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
     sd.wait()
     amplitude = np.max(np.abs(gravacao))
-    print(f'Amplitude Capturada: {amplitude}')  # Depuração para verificar a captura de som
+    print(f'Amplitude Capturada: {amplitude}')  # DEBBUG
     return amplitude
 
-def game_over(tela, fonte,tempo_duracao):
-    pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
-    som_go = pygame.mixer.Sound('Sons/somgo.mp3')
-    # Mostrar mensagem de game over
-    mensagem = fonte.render("Sua voz acabou", True, vermelho)
-    tela.blit(mensagem, (tela.get_width() // 2 - mensagem.get_width() // 2, tela.get_height() // 2 - mensagem.get_height() // 2))
-    texto_score = fonte.render(f'Porém, você soltou ela por {tempo_duracao:.2f} segundos', True, branco)
-    tela.blit(texto_score, (tela.get_width() // 2 - texto_score.get_width() // 2, tela.get_height() // 2 + texto_score.get_height()))
-    som_go.play()
-    pygame.display.update()
-    pygame.time.wait(4000) 
-    pygame.quit()
-    exit() 
-    
-
 def tela_de_jogo(tela):
-    pygame.font.init()
-
-    # Função do jogo para ajuste da velocidade
-    tempo = pygame.time.Clock()
-
-    # Carrega o arquivo assets.py
-    assets = load_assets()
+    game = True # variável para o loop principal
+    assets = load_assets() # carrega os assts do assets.py
 
     # Para escrever o volume do microfone e o tempo da rodada
+    pygame.font.init() # inicialização de fonte para os textos de tela
     fonte = pygame.font.Font(None, 36)
+    
     # Início do tempo da rodada
+    tempo = pygame.time.Clock() # tempo de jogo
     inicio_rodada = pygame.time.get_ticks()
+    tempo_jogo = 0
 
-    # Velocidade do personagem
-    v_minion = 0 
-
+    # Adicionando Sprites (minion, piso, teto e espinhos)
     all_sprites = pygame.sprite.Group()
     espinhos_group = pygame.sprite.Group()
-
-    game = True
+    # dimensões
     minion = Minion(assets, 200, 200)
     piso = Piso(assets, 650, height)
     teto = Teto(assets, 650, 70)
     all_sprites.add(minion, piso, teto)
-
-    tempo_jogo = 0
-    velocidade_espinhos = 8  # Velocidade inicial dos espinhos aumentada
+    # velocidades
+    v_minion = 0 # velocidade inicial do minion 
+    velocidade_espinhos = 100  # velocidade inicial dos espinhos 
 
     # Função para adicionar espinhos
     def adicionar_espinhos():
@@ -67,11 +49,13 @@ def tela_de_jogo(tela):
         espinho.speed = velocidade_espinhos
         all_sprites.add(espinho)
         espinhos_group.add(espinho)
-        print("Espinho adicionado")
+        print("Espinho adicionado") #DEBBUG
  
+    # Código gerado por https://chatgpt.com/?model=gpt-4
     adicionar_espinhos_event = pygame.USEREVENT + 1
-    pygame.time.set_timer(adicionar_espinhos_event, 2000)
+    pygame.time.set_timer(adicionar_espinhos_event, 2000) # adiciona espinhos na tela de 2 em 2 segundos
 
+    # LOOPING PRINCIPAL
     while game:
         tempo.tick(60)
         for event in pygame.event.get():
@@ -79,8 +63,7 @@ def tela_de_jogo(tela):
                 game = False
             elif event.type == adicionar_espinhos_event:
                 if not espinhos_group:
-                    novo_espinho = Espinhos(assets)
-                    espinhos_group.add(novo_espinho)
+                    adicionar_espinhos()
 
         all_sprites.update()
         espinhos_group.update()

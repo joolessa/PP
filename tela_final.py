@@ -6,13 +6,16 @@ from constantes import *
 from assets import load_assets
 from tela_inicial import *
 
-def tela_final(tela, tempo_duracao, fonte):
+def game_over(tela, fonte,tempo_duracao):
+    pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
+    som_go = pygame.mixer.Sound('Sons/somgo.mp3')
     # Mostrar mensagem de game over
-    mensagem = fonte.render("PP Game Over", True, branco)
-    # texto mostrando o tempo o jogador ficou vivo
-    texto_score = fonte.render(f'Você soltou a voz por {tempo_duracao:.2f} segundos', True, branco)
-    pos_texto1 = texto_score.get_rect(center=((width// 2), (height // 2)-100))
+    mensagem = fonte.render("Sua voz acabou", True, vermelho)
+    tela.blit(mensagem, (tela.get_width() // 2 - mensagem.get_width() // 2, tela.get_height() // 2 - mensagem.get_height() // 2))
+    texto_score = fonte.render(f'Porém, você soltou ela por {tempo_duracao:.2f} segundos', True, branco)
+    tela.blit(texto_score, (tela.get_width() // 2 - texto_score.get_width() // 2, tela.get_height() // 2 + texto_score.get_height()))
+    som_go.play()
     pygame.display.update()
-    pygame.time.wait(3000)  # Espera 3 segundos antes de fechar
+    pygame.time.wait(4000) 
     pygame.quit()
-    quit()
+    exit() 
