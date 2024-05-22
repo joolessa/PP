@@ -23,8 +23,8 @@ def game_over(tela, fonte):
     tela.blit(mensagem, (tela.get_width() // 2 - mensagem.get_width() // 2, tela.get_height() // 2 - mensagem.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(3000)  # Espera 3 segundos antes de fechar
-    pygame.quit()
-    quit()
+    tela_inicial(tela)
+
 
 def tela_de_jogo(tela):
     pygame.font.init()
