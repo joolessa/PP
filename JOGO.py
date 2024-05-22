@@ -62,13 +62,13 @@ def tela_de_jogo(tela):
             if event.type == pygame.QUIT:
                 game = False
             elif event.type == adicionar_espinhos_event:
-                if not espinhos_group:
+                if not espinhos_group: # queremos só um espinho por vez na tela
                     adicionar_espinhos()
 
         all_sprites.update()
         espinhos_group.update()
 
-        # Verificar colisões
+        # Collided
         if pygame.sprite.spritecollide(minion, espinhos_group, False) or pygame.sprite.collide_rect(minion, piso) or pygame.sprite.collide_rect(minion, teto):
             game_over(tela, fonte,duracao_rodada)
 
@@ -79,8 +79,7 @@ def tela_de_jogo(tela):
 
         # Ajuste da sensibilidade do som
         volume = volume_microfone() * 3000
-
-        print(f'Volume Capturado: {volume}')
+        print(f'Volume Capturado: {volume}') # DEBBUG
 
         # Se o volume for maior que a sensibilidade do som o personagem sobe
         if volume > sensi_som:
@@ -92,14 +91,12 @@ def tela_de_jogo(tela):
         # Multiplicando a velocidade do personagem pelo amortecimento para ele parar de cair
         v_minion *= amortecimento
         minion.rect.y += v_minion 
-
-        print(f'v_minion: {v_minion}, minion.rect.y: {minion.rect.y}')
+        print(f'v_minion: {v_minion}, minion.rect.y: {minion.rect.y}') # DEBBUG
 
         # ATENÇÃO: Não deixar o personagem sair da tela    
         if minion.rect.bottom > tamanho_tela[1]:
             minion.rect.bottom = tamanho_tela[1]
             v_minion = 0
-        
         if minion.rect.top < 0:
             minion.rect.top = 0
             v_minion = 0
