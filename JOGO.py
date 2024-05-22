@@ -117,7 +117,7 @@ def tela_de_jogo(tela):
 
     pygame.quit()
 
-# Inicialização do Pygame e variáveis de tela
+# INIT
 pygame.init()
 tela = pygame.display.set_mode((width, height))
 pygame.display.set_caption('PP GAME')
