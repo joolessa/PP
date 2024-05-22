@@ -54,7 +54,7 @@ def tela_de_jogo(tela):
         all_sprites.draw(tela)
 
         # Multiplicando por 20 para aumentar a sensibilidade do som
-        volume = volume_microfone() * 10000
+        volume = volume_microfone() * 1500
 
         # Debug: imprimir o volume capturado
         print(f'Volume Capturado: {volume}')
