@@ -24,7 +24,8 @@ def game_over(tela, fonte):
     som_go.play()
     pygame.display.update()
     pygame.time.wait(3000)  # Espera 3 segundos antes de fechar
-    tela_de_jogo(tela)
+    pygame.quit()
+    quit()
 
 def tela_de_jogo(tela):
     pygame.font.init()
