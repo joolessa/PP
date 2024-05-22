@@ -13,7 +13,7 @@ class Espinhos(pygame.sprite.Sprite):
         self.rect.y = random.randint(0, tamanho_tela[1] - self.rect.height)
 
         # Velocidade inicial dos espinhos
-        self.speed = 70
+        self.speed = 100
 
     def update(self):
         self.rect.x -= self.speed  # Movimento horizontal para a esquerda
