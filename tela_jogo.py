@@ -8,13 +8,14 @@ from piso import *
 from teto import *
 from constantes import *
 from assets import load_assets
-from obstaculos import *
+from obstaculos import Espinhos
 from tela_final import game_over
 
 def volume_microfone(duracao=0.05, fs=44100):
     gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
     sd.wait()
     amplitude = np.max(np.abs(gravacao))
+    print(f'Amplitude Capturada: {amplitude}')
     return amplitude
 
 def tela_de_jogo(tela):
@@ -37,6 +38,7 @@ def tela_de_jogo(tela):
 
     game = True
     minion = Minion(assets, 200, 200)
+    minion.alive = True
     piso = Piso(assets,650,height)
     teto = Teto(assets, 650,70)
     all_sprites.add(minion,piso,teto)
@@ -61,6 +63,9 @@ def tela_de_jogo(tela):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game = False
+            elif event.type == adicionar_espinhos_event:
+                adicionar_espinhos()
+
 
         all_sprites.update()
 
@@ -75,6 +80,8 @@ def tela_de_jogo(tela):
         # aumentar a sensibilidade do som
         volume = volume_microfone() * 1500
 
+        print(f'Volume Capturado: {volume}')
+
        
         # Se o volume for maior que a sensibilidade do som o personagem sobe
         if volume > sensi_som:
@@ -88,6 +95,8 @@ def tela_de_jogo(tela):
         minion.rect.y += v_minion 
 
         minion.update()
+
+        print(f'v_minion: {v_minion}, minion.rect.y: {minion.rect.y}')
        
         # ATENÇÃO: Não deixar o personagem sair da tela	
         if minion.rect.bottom > tamanho_tela[1]:
