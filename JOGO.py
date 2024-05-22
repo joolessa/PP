@@ -48,6 +48,7 @@ def tela_de_jogo(tela):
 
     # Velocidade do personagem
     v_minion = 0 
+    velocidade_espinhos = 100
 
     all_sprites = pygame.sprite.Group()
     espinhos_group = pygame.sprite.Group()
@@ -63,7 +64,7 @@ def tela_de_jogo(tela):
     # Função para adicionar espinhos
     def adicionar_espinhos():
         espinho = Espinhos(assets)
-        espinho.speed = 100
+        espinho.speed = velocidade_espinhos
         all_sprites.add(espinho)
         espinhos_group.add(espinho)
         print("Espinho adicionado")
@@ -79,7 +80,7 @@ def tela_de_jogo(tela):
             elif event.type == adicionar_espinhos_event:
                 if not espinhos_group:
                     novo_espinho = Espinhos(assets)
-                    espinho.speed = 100
+                    novo_espinho.speed = velocidade_espinhos
                     espinhos_group.add(novo_espinho)
 
         all_sprites.update()
@@ -124,7 +125,7 @@ def tela_de_jogo(tela):
         # Aumentar a dificuldade do jogo
         tempo_jogo += 1
         if tempo_jogo % 600 == 0:  # A cada 10 segundos aumenta a velocidade dos espinhos
-            espinho.speed += 1
+            velocidade_espinhos += 1
             print(f'Nova velocidade dos espinhos: {velocidade_espinhos}')
 
         # Textos na tela
