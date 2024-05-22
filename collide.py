@@ -2,10 +2,28 @@ import pygame
 import random
 from assets import *
 from constantes import *
+from personagem import *
 
 # Função de colisão
 def collide(minion, obstaculo):
     return minion.rect.colliderect(obstaculo.rect)
+
+# Criando um grupo de meteoros
+all_sprites = pygame.sprite.Group()
+all_ = pygame.sprite.Group()
+# Criando o jogador
+player = M(ship_img)
+all_sprites.add(player)
+# Criando os meteoros
+for i in range(8):
+    meteor = Meteor(meteor_img)
+    all_sprites.add(meteor)
+    all_meteors.add(meteor)
+
+# Verifica se houve colisão entre nave e meteoro
+    hits = pygame.sprite.spritecollide(player, all_meteors, True)
+
+
 
 minion = Minion(assets, 200, 200)
 running = True
