@@ -7,11 +7,9 @@ class Minion(pygame.sprite.Sprite):
 
         self.image = assets['minion']
         self.rect = self.image.get_rect()
-        self.rect.centerx = x
-        self.rect.bottom = y
-        self.speedx = 0
-        self.assets = assets
+        self.rect.x = x
+        self.rect.y = y
+        self.speed_y = 0  # Velocidade vertical
 
     def update(self):
-        self.rect.x += self.speedx
-
+        self.rect.y += self.self.speed_y

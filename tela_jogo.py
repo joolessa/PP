@@ -22,8 +22,10 @@ def tela_de_jogo(tela):
     # Carrega o arquivo assets.py
     assets = load_assets()
 
-    # Para escrever o volume do microfone
+    # Para escrever o volume do microfone e o tempo da rodada
     fonte = pygame.font.Font(None, 36)
+    # Início do tempo da rodada
+    inicio_rodada = pygame.time.get_ticks()
 
     # Velocidade do personagem
     v_minion = 0 
@@ -47,7 +49,7 @@ def tela_de_jogo(tela):
         all_sprites.update()
 
         # Montagem de fundo e personagem
-        tela.fill((0, 0, 0))
+        tela.fill(preto)
         tela.blit(assets['fundo'], (0,0))
         all_sprites.draw(tela)
 
@@ -63,17 +65,27 @@ def tela_de_jogo(tela):
         
         # Multiplicando a velocidade do personagem pelo amortecimento para ele parar de cair
         v_minion *= amortecimento
-        minion.y += v_minion
+        minion.speed_y = v_minion 
+
+        minion.update()
+
 
         # ATENÇÃO: Não deixar o personagem sair da tela	
-        if minion.bottom > tamanho_tela[1]:
-            minion.bottom = tamanho_tela[1]
+        if minion.rect.bottom > tamanho_tela[1]:
+            minion.rect.bottom = tamanho_tela[1]
             v_minion = 0
         
-        if minion.top < 0:
-            minion.top = 0
-            minion = 0
+        if minion.rect.top < 0:
+            minion.rect.top = 0
+            v_minion = 0
 
+        # Textos na tela
+        duracao_rodada = (pygame.time.get_ticks() - inicio_rodada) / 1000
+        texto_volume = fonte.render(f'Volume: {volume:.2f}', True, branco)
+        texto_duracao = fonte.render(f'Tempo: {duracao_rodada:.2f}s', True, branco)
+        # Desenhar o texto na tela
+        tela.blit(texto_volume, (10, 10))
+        tela.blit(texto_duracao, (10, 50))
         pygame. display. update()
 
     pygame.quit()
