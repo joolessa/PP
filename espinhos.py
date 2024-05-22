@@ -5,7 +5,7 @@ from constantes import *
 class Espinhos(pygame.sprite.Sprite):
     def __init__(self, assets):
         super().__init__()
-        self.image = pygame.transform.scale(assets['espinhos'], (50, 50))
+        self.image = pygame.transform.scale(assets['espinhos'], (80, 80))
         self.rect = self.image.get_rect()
 
         # Aparecendo no canto direito da tela, em uma posição vertical aleatória
