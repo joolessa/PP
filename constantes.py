@@ -15,6 +15,7 @@ amortecimento = 0.9 # Amortecimento do som quanto maior o valor mais rapido o pe
 
 branco = (255, 255, 255)
 preto = (0, 0, 0)
+vermelho = (255, 0, 0)
 
 # Estados do jogo
 INICIAR = 0
