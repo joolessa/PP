@@ -22,14 +22,10 @@ def game_over(tela, fonte):
     mensagem = fonte.render("Game Over", True, (255, 0, 0))
     tela.blit(mensagem, (tela.get_width() // 2 - mensagem.get_width() // 2, tela.get_height() // 2 - mensagem.get_height() // 2))
     pygame.display.update()
-<<<<<<< HEAD
     pygame.time.wait(3000)  # Espera 3 segundos antes de fechar
     tela_inicial(tela)
-
-=======
     pygame.time.wait(3000)  # Espera 3 segundos antes de voltar para a tela inicial
     tela_inicial(tela)  # Chama a função tela_inicial importada
->>>>>>> 32723b15ca2a92ee25d826ebb6547a98a04136d0
 
 def tela_de_jogo(tela):
     pygame.font.init()
