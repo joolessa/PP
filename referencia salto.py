@@ -28,32 +28,10 @@ def atualizar_tela(tela, fonte, retangulo_personagem, volume):
     tela.blit(texto_volume, retangulo_texto)
     pygame.display.update()
 
-# EXECUÇÃO DO JOGO
-pygame.init()
-janela = pygame.display.set_mode(tamanho_tela)
-imagem_fundo = pygame.image.load('/workspaces/PP/Imagens/Fundo.png')
-pygame.display.set_caption('PP Game')
 
-relogio = pygame.time.Clock()
-fonte = pygame.font.Font(None, 36) # Para escrever o volume do microfone
 
-minion = pygame.image.load("/workspaces/PP/Imagens/Minion Bob.png")
-v_minion = 0
 
-# LOOP PRINCIPAL
-game = True
-while game:
-  # Fechamento do jogo
-  for evento in pygame.event.get():
-    if evento.type == pygame.QUIT:
-      game = False
-  
-  # Montagem de fundo e personagem
-  janela.blit(imagem_fundo, (0,0))
-  janela.blit(minion, (tamanho_tela[0] // 4, tamanho_tela[1] - altura_personagem, largura_personagem, altura_personagem))
-        
-  # Multiplicando por 20 para aumentar a sensibilidade do som
-  volume = volume_microfone() * 20
+    
   
   # Se o volume for maior que a sensibilidade do som o personagem sobe
   if volume > sensi_som:

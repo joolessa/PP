@@ -1,8 +1,3 @@
-import pygame
-import sounddevice as sd
-import numpy as np 
-
-
 height = 800
 width = 1300
 FPS = 60 #Frames por segundo
