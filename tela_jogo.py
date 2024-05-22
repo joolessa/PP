@@ -8,7 +8,7 @@ from teto import Teto
 from espinhos import Espinhos
 from constantes import *
 from assets import load_assets
-from tela_inicial import tela_inicial  # Assumindo que tela_inicial está importada aqui
+from tela_inicial import *
 
 def volume_microfone(duracao=0.05, fs=44100):
     gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
@@ -24,8 +24,7 @@ def game_over(tela, fonte):
     pygame.display.update()
     pygame.time.wait(3000)  # Espera 3 segundos antes de fechar
     tela_inicial(tela)
-    pygame.time.wait(3000)  # Espera 3 segundos antes de voltar para a tela inicial
-    tela_inicial(tela)  # Chama a função tela_inicial importada
+
 
 def tela_de_jogo(tela):
     pygame.font.init()
@@ -90,20 +89,17 @@ def tela_de_jogo(tela):
         all_sprites.draw(tela)
 
         # Ajuste da sensibilidade do som
-        volume = volume_microfone() * 500
+        volume = volume_microfone() * 1500
 
         print(f'Volume Capturado: {volume}')
 
         # Se o volume for maior que a sensibilidade do som o personagem sobe
         if volume > sensi_som:
-            v_minion -= 1.5 * volume 
+            v_minion -= 3 * volume 
         # Se não ele cai com a gravidade
         else:
             v_minion += gravidade
         
-        # Limitando a velocidade mínima para evitar que o Minion suba constantemente
-        v_minion = max(v_minion, -10)
-
         # Multiplicando a velocidade do personagem pelo amortecimento para ele parar de cair
         v_minion *= amortecimento
         minion.rect.y += v_minion 
@@ -139,4 +135,4 @@ def tela_de_jogo(tela):
 pygame.init()
 tela = pygame.display.set_mode((width, height))
 pygame.display.set_caption('PP GAME')
-tela_inicial(tela)
+tela_de_jogo(tela)
