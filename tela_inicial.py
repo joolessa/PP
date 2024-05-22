@@ -13,10 +13,11 @@ def tela_inicial(tela):
     # Renderize o texto desejado
     texto1 = fonte.render("Bem Vindo ao PP game!", True, branco)
     texto2 = fonte.render("Clique duas vezes para iniciar", True, branco)
+    texto3 = fonte.render("Feito por Joana, Maria e Valentina", True, branco)
 
     # Posicione o texto no centro da tela
     pos_texto1 = texto1.get_rect(center=((width// 2), (height // 2)-100))
-    pos_texto2 = texto1.get_rect(center=((width// 2)+50, (height // 2)))
+    pos_texto2 = texto2.get_rect(center=((width// 2)-10, (height // 2)))
 
     #trecho extraido de https://dessoft.insper-comp.com.br/conteudo/projeto
     running = True
