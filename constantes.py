@@ -19,9 +19,6 @@ branco = (255, 255, 255)
 preto = (0, 0, 0)
 vermelho = (255, 0, 0)
 
-# som
-som_go = pygame.mixer.Sound('Sons/somgo.mp3')
-
 # Estados do jogo
 INICIAR = 0
 JOGO = 1
