@@ -47,9 +47,8 @@ def tela_de_jogo(tela):
 
     # Função para adicionar espinhos
     def adicionar_espinhos():
-        espinho = Espinhos(assets, minion)
+        espinho = Espinhos(assets)
         espinho.speed = velocidade_espinhos  
-        espinho.calculate_trajectory()  
         all_sprites.add(espinho)
         espinhos_group.add(espinho)
         print("Espinho adicionado")
@@ -113,7 +112,6 @@ def tela_de_jogo(tela):
         duracao_rodada = (pygame.time.get_ticks() - inicio_rodada) / 1000
         texto_volume = fonte.render(f'Volume: {volume:.2f}', True, branco)
         texto_duracao = fonte.render(f'Tempo: {duracao_rodada:.2f}s', True, branco)
-        # Desenhar o texto na tela
         tela.blit(texto_volume, (10, 10))
         tela.blit(texto_duracao, (10, 50))
         pygame. display. update()
