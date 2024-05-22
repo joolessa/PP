@@ -75,5 +75,9 @@ def tela_de_jogo(tela):
             minion = 0
 
         pygame. display. update()
-        
+
     pygame.quit()
+
+tela = pygame.display.set_mode((width, height))
+pygame.display.set_caption('PP GAME')
+tela_de_jogo(tela)
