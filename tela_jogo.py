@@ -19,6 +19,7 @@ def volume_microfone(duracao=0.05, fs=44100):
     return amplitude
 
 def tela_de_jogo(tela):
+    pygame.font.init()
     # funcao do jogo pra ajuste da velocidade
     tempo = pygame.time.Clock()
 
