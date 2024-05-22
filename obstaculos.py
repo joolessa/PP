@@ -1,17 +1,34 @@
 import pygame
 import random
-from assets import *
+import math
 from constantes import *
 
-class Obstaculo(pygame.sprite.Sprite):
+class Espinhos(pygame.sprite.Sprite):
     # velocidade do triangulo
-    def _init_(self, speed):
-        super()._init_()  #inicialização correta
-        self.image = pygame.transform.scale(pygame.image.load('Imagens/obstaculo.png'), (50, 50))  # imagem do obstáculo
-        # 'x' é largura da tela (começando fora dela), e 'y' uma posição aleatória 
-        self.rect = self.image.get_rect(x=width, y=random.randint(50, height - 50))
-        self.speed = speed  # velocidade do obstáculo
+    def _init_(self, assets,minion):
+        super()._init_()
+        self.image = assets['espinhos']
+        self.rect = self.image.get_rect()
+        self.minion = minion
+
+        self.rect.x = random.randint(0, tamanho_tela[0])
+        self.rect.y = 0
+
+        self.speed = 5
+        self.calculate_trajectory()
+
+    def calculate_trajectory(self):
+        dx = self.minion.rect.x - self.rect.x
+        dy = self.minion.rect.y - self.rect.y
+        dist = math.hypot(dx, dy)
+        if dist == 0:
+            dist = 1
+        self.velocity_x = self.speed * (dx / dist)
+        self.velocity_y = self.speed * (dy / dist)
+    
     def update(self):
-        self.rect.x -= self.speed
-        if self.rect.right < 0:
-            self.kill()
+        self.rect.x += self.velocity_x
+        self.rect.y += self.velocity_y
+        if self.rect.colliderect(self.minion.rect):
+            self.minion.alive = False
+            self.kill() 

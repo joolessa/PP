@@ -1,19 +1,16 @@
 import pygame
 import sounddevice as sd
 import numpy as np
+import random
+import math
 from personagem import *
 from piso import *
 from teto import *
 from constantes import *
 from assets import load_assets
-from tela_inicial import *
 from obstaculos import *
-
-def volume_microfone(duracao=0.05, fs=44100):
-    gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
-    sd.wait()
-    amplitude = np.max(np.abs(gravacao))
-    return amplitude
+from tela_final import game_over
+from microfone import volume_microfone
 
 def tela_de_jogo(tela):
     # funcao do jogo pra ajuste da velocidade
@@ -31,14 +28,28 @@ def tela_de_jogo(tela):
     v_minion = 0 
 
     all_sprites = pygame.sprite.Group()
-    groups = {}
-    groups['all_sprites'] = all_sprites
+    espinhos_group = pygame.sprite.Group()
 
     game = True
     minion = Minion(assets, 200, 200)
     piso = Piso(assets,650,height)
     teto = Teto(assets, 650,70)
     all_sprites.add(minion,piso,teto)
+
+    tempo_jogo = 0
+    velocidade_espinhos = 5  # Velocidade inicial dos espinhos
+
+    # Função para adicionar espinhos
+    def adicionar_espinhos():
+        espinho = Espinhos(assets, minion)
+        espinho.speed = velocidade_espinhos  
+        espinho.calculate_trajectory()  
+        all_sprites.add(espinho)
+        espinhos_group.add(espinho)
+
+    # Adicionar espinhos periodicamente
+    adicionar_espinhos_event = pygame.USEREVENT + 1
+    pygame.time.set_timer(adicionar_espinhos_event, 2000)
 
     while game:
         tempo.tick(60)
@@ -48,17 +59,18 @@ def tela_de_jogo(tela):
 
         all_sprites.update()
 
+        if not minion.alive:
+            game_over(tela, fonte)
+
         # Montagem de fundo e personagem
         tela.fill(preto)
         tela.blit(assets['fundo'], (0,0))
         all_sprites.draw(tela)
 
-        # Multiplicando por 20 para aumentar a sensibilidade do som
+        # aumentar a sensibilidade do som
         volume = volume_microfone() * 1500
 
-        # Debug: imprimir o volume capturado
-        print(f'Volume Capturado: {volume}')
-
+       
         # Se o volume for maior que a sensibilidade do som o personagem sobe
         if volume > sensi_som:
             v_minion -= 3 * volume 
@@ -71,9 +83,7 @@ def tela_de_jogo(tela):
         minion.rect.y += v_minion 
 
         minion.update()
-        # Debug: imprimir a velocidade do minion
-        print(f'v_minion: {v_minion}, minion.rect.y: {minion.rect.y}')
-
+       
         # ATENÇÃO: Não deixar o personagem sair da tela	
         if minion.rect.bottom > tamanho_tela[1]:
             minion.rect.bottom = tamanho_tela[1]
@@ -82,6 +92,12 @@ def tela_de_jogo(tela):
         if minion.rect.top < 0:
             minion.rect.top = 0
             v_minion = 0
+
+        # Aumenta a dificuldade do jogo
+        tempo_jogo += 1
+        if tempo_jogo % 600 == 0:  # A cada 10 segundos aumenta a velocidade dos espinhos
+            velocidade_espinhos += 1
+            print(f'Nova velocidade dos espinhos: {velocidade_espinhos}')
 
         # Textos na tela
         duracao_rodada = (pygame.time.get_ticks() - inicio_rodada) / 1000
