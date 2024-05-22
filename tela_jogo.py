@@ -14,22 +14,20 @@ def volume_microfone(duracao=0.05, fs=44100):
     gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
     sd.wait()
     amplitude = np.max(np.abs(gravacao))
-    print(f'Amplitude Capturada: {amplitude}')  # Depuração para verificar a captura de som
+    print(f'Amplitude Capturada: {amplitude}')  # TESTE DE DEBBUG
     return amplitude
 
 def game_over(tela, fonte):
-    # Mostrar mensagem de game over
-    mensagem = fonte.render("Game Over", True, (255, 0, 0))
+    mensagem = fonte.render("Game Over", True, vermelho) # Mensagem vermelha no meio da tela
     tela.blit(mensagem, (tela.get_width() // 2 - mensagem.get_width() // 2, tela.get_height() // 2 - mensagem.get_height() // 2))
     pygame.display.update()
-    pygame.time.wait(3000)  # Espera 3 segundos antes de fechar
+    pygame.time.wait(3000)
     tela_inicial(tela)
 
 
 def tela_de_jogo(tela):
     pygame.font.init()
 
-    # Função do jogo para ajuste da velocidade
     tempo = pygame.time.Clock()
 
     # Carrega o arquivo assets.py
@@ -37,10 +35,10 @@ def tela_de_jogo(tela):
 
     # Para escrever o volume do microfone e o tempo da rodada
     fonte = pygame.font.Font(None, 36)
-    # Início do tempo da rodada
+    #  Contagem de tempo da rodada
     inicio_rodada = pygame.time.get_ticks()
 
-    # Velocidade do personagem
+    # Velocidade inicial do minion
     v_minion = 0 
 
     all_sprites = pygame.sprite.Group()
@@ -53,9 +51,9 @@ def tela_de_jogo(tela):
     all_sprites.add(minion, piso, teto)
 
     tempo_jogo = 0
-    velocidade_espinhos = 8  # Velocidade inicial dos espinhos aumentada
+    # Velocidade inicial dos espinhos
+    velocidade_espinhos = 8 
 
-    # Função para adicionar espinhos
     def adicionar_espinhos():
         espinho = Espinhos(assets)
         espinho.speed = velocidade_espinhos
@@ -63,7 +61,7 @@ def tela_de_jogo(tela):
         espinhos_group.add(espinho)
         print("Espinho adicionado")
 
-    # Adicionar espinhos periodicamente
+    # Adiciona espinhos periodicamente
     adicionar_espinhos_event = pygame.USEREVENT + 1
     pygame.time.set_timer(adicionar_espinhos_event, 2000)
 
@@ -77,10 +75,8 @@ def tela_de_jogo(tela):
 
         all_sprites.update()
 
-        # Verificar colisões
-        if pygame.sprite.spritecollide(minion, espinhos_group, False) or \
-           pygame.sprite.collide_rect(minion, piso) or \
-           pygame.sprite.collide_rect(minion, teto):
+        # Collided
+        if pygame.sprite.spritecollide(minion, espinhos_group, False) or pygame.sprite.collide_rect(minion, piso) or pygame.sprite.collide_rect(minion, teto):
             game_over(tela, fonte)
 
         # Montagem de fundo e personagem
@@ -104,7 +100,7 @@ def tela_de_jogo(tela):
         v_minion *= amortecimento
         minion.rect.y += v_minion 
 
-        print(f'v_minion: {v_minion}, minion.rect.y: {minion.rect.y}')
+        print(f'v_minion: {v_minion}, minion.rect.y: {minion.rect.y}') # DEBBUG
 
         # ATENÇÃO: Não deixar o personagem sair da tela    
         if minion.rect.bottom > tamanho_tela[1]:
@@ -131,7 +127,6 @@ def tela_de_jogo(tela):
 
     pygame.quit()
 
-# Inicialização do Pygame e variáveis de tela
 pygame.init()
 tela = pygame.display.set_mode((width, height))
 pygame.display.set_caption('PP GAME')
