@@ -2,6 +2,7 @@ import pygame
 import random
 import math
 from constantes import *
+from assets import load_assets
 
 class Espinhos(pygame.sprite.Sprite):
     # velocidade do triangulo

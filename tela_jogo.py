@@ -3,12 +3,13 @@ import sounddevice as sd
 import numpy as np
 import random
 import math
-from personagem import *
-from piso import *
-from teto import *
+from personagem import Minion
+from piso import Piso
+from teto import Teto
+from espinhos import Espinhos 
 from constantes import *
 from assets import load_assets
-from obstaculos import Espinhos
+from espinhos import *
 from tela_final import game_over
 
 def volume_microfone(duracao=0.05, fs=44100):
@@ -53,6 +54,7 @@ def tela_de_jogo(tela):
         espinho.calculate_trajectory()  
         all_sprites.add(espinho)
         espinhos_group.add(espinho)
+        print("Espinho adicionado")
 
     # Adicionar espinhos periodicamente
     adicionar_espinhos_event = pygame.USEREVENT + 1
@@ -93,8 +95,6 @@ def tela_de_jogo(tela):
         # Multiplicando a velocidade do personagem pelo amortecimento para ele parar de cair
         v_minion *= amortecimento
         minion.rect.y += v_minion 
-
-        minion.update()
 
         print(f'v_minion: {v_minion}, minion.rect.y: {minion.rect.y}')
        
