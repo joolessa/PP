@@ -16,6 +16,15 @@ def volume_microfone(duracao=0.05, fs=44100):
     print(f'Amplitude Capturada: {amplitude}')  # Depuração para verificar a captura de som
     return amplitude
 
+def game_over(tela, fonte):
+    # Mostrar mensagem de game over
+    mensagem = fonte.render("Game Over", True, (255, 0, 0))
+    tela.blit(mensagem, (tela.get_width() // 2 - mensagem.get_width() // 2, tela.get_height() // 2 - mensagem.get_height() // 2))
+    pygame.display.update()
+    pygame.time.wait(3000)  # Espera 3 segundos antes de fechar
+    pygame.quit()
+    quit()
+
 def tela_de_jogo(tela):
     pygame.font.init()
 
@@ -66,6 +75,10 @@ def tela_de_jogo(tela):
                 adicionar_espinhos()
 
         all_sprites.update()
+
+        # collided
+        if pygame.sprite.spritecollide(minion, espinhos_group, False) or pygame.sprite.collide_rect(minion, piso) or pygame.sprite.collide_rect(minion, teto):
+            game_over(tela, fonte)
 
         # Montagem de fundo e personagem
         tela.fill(preto)
