@@ -9,8 +9,8 @@ altura_personagem = 100
 largura_obstaculo = 50
 altura_obstaculo = 50
 
-gravidade = 0.5 # Gravidade quanto maior o valor mais rapido o personagem cai
-sensi_som = 0.5 # quanto o som precisa ser alto para o personagem subir
+gravidade = 3 # Gravidade quanto maior o valor mais rapido o personagem cai
+sensi_som = 5 # quanto o som precisa ser alto para o personagem subir
 amortecimento = 0.9 # Amortecimento do som quanto maior o valor mais rapido o personagem para de cair
 
 branco = (255, 255, 255)
