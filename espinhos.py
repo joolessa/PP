@@ -31,5 +31,4 @@ class Espinhos(pygame.sprite.Sprite):
         self.rect.x += self.velocity_x
         self.rect.y += self.velocity_y
         if self.rect.colliderect(self.minion.rect):
-            self.minion.alive = False
             self.kill() 

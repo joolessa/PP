@@ -10,7 +10,6 @@ from espinhos import Espinhos
 from constantes import *
 from assets import load_assets
 from espinhos import *
-from tela_final import game_over
 
 def volume_microfone(duracao=0.05, fs=44100):
     gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
@@ -39,7 +38,6 @@ def tela_de_jogo(tela):
 
     game = True
     minion = Minion(assets, 200, 200)
-    minion.alive = True
     piso = Piso(assets,650,height)
     teto = Teto(assets, 650,70)
     all_sprites.add(minion,piso,teto)
@@ -71,8 +69,6 @@ def tela_de_jogo(tela):
 
         all_sprites.update()
 
-        if not minion.alive:
-            game_over(tela, fonte)
 
         # Montagem de fundo e personagem
         tela.fill(preto)
