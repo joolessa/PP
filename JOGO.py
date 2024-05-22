@@ -48,7 +48,6 @@ def tela_de_jogo(tela):
 
     # Velocidade do personagem
     v_minion = 0 
-    velocidade_espinhos = 100
 
     all_sprites = pygame.sprite.Group()
     espinhos_group = pygame.sprite.Group()
@@ -60,7 +59,8 @@ def tela_de_jogo(tela):
     all_sprites.add(minion, piso, teto)
 
     tempo_jogo = 0
-    
+    velocidade_espinhos = 8  # Velocidade inicial dos espinhos aumentada
+
     # Função para adicionar espinhos
     def adicionar_espinhos():
         espinho = Espinhos(assets)
@@ -80,7 +80,6 @@ def tela_de_jogo(tela):
             elif event.type == adicionar_espinhos_event:
                 if not espinhos_group:
                     novo_espinho = Espinhos(assets)
-                    novo_espinho.speed = velocidade_espinhos
                     espinhos_group.add(novo_espinho)
 
         all_sprites.update()
