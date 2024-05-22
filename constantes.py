@@ -1,3 +1,5 @@
+import pygame
+
 height = 800
 width = 1300
 FPS = 60 #Frames por segundo
@@ -16,6 +18,9 @@ amortecimento = 0.9 # Amortecimento do som quanto maior o valor mais rapido o pe
 branco = (255, 255, 255)
 preto = (0, 0, 0)
 vermelho = (255, 0, 0)
+
+# som
+som_go = pygame.mixer.Sound()
 
 # Estados do jogo
 INICIAR = 0
