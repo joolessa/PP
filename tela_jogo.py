@@ -8,6 +8,7 @@ from teto import Teto
 from espinhos import Espinhos
 from constantes import *
 from assets import load_assets
+from tela_inicial import *
 
 def volume_microfone(duracao=0.05, fs=44100):
     gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
@@ -52,7 +53,7 @@ def tela_de_jogo(tela):
     all_sprites.add(minion, piso, teto)
 
     tempo_jogo = 0
-    velocidade_espinhos = 20  # Velocidade inicial dos espinhos
+    velocidade_espinhos = 8  # Velocidade inicial dos espinhos aumentada
 
     # Função para adicionar espinhos
     def adicionar_espinhos():
@@ -76,8 +77,10 @@ def tela_de_jogo(tela):
 
         all_sprites.update()
 
-        # collided
-        if pygame.sprite.spritecollide(minion, espinhos_group, False) or pygame.sprite.collide_rect(minion, piso) or pygame.sprite.collide_rect(minion, teto):
+        # Verificar colisões
+        if pygame.sprite.spritecollide(minion, espinhos_group, False) or \
+           pygame.sprite.collide_rect(minion, piso) or \
+           pygame.sprite.collide_rect(minion, teto):
             game_over(tela, fonte)
 
         # Montagem de fundo e personagem
