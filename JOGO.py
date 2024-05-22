@@ -95,7 +95,7 @@ def tela_de_jogo(tela):
         all_sprites.draw(tela)
 
         # Ajuste da sensibilidade do som
-        volume = volume_microfone() * 1500
+        volume = volume_microfone() * 3000
 
         print(f'Volume Capturado: {volume}')
 
