@@ -21,10 +21,10 @@ def game_over(tela, fonte):
     # Mostrar mensagem de game over
     mensagem = fonte.render("Game Over", True, (255, 0, 0))
     tela.blit(mensagem, (tela.get_width() // 2 - mensagem.get_width() // 2, tela.get_height() // 2 - mensagem.get_height() // 2))
+    som_go.play()
     pygame.display.update()
     pygame.time.wait(3000)  # Espera 3 segundos antes de fechar
-    pygame.quit()
-    quit()
+    tela_de_jogo(tela)
 
 def tela_de_jogo(tela):
     pygame.font.init()
