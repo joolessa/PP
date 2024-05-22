@@ -54,21 +54,21 @@ def tela_de_jogo(tela):
         all_sprites.draw(tela)
 
         # Multiplicando por 20 para aumentar a sensibilidade do som
-        volume = volume_microfone() * 500
+        volume = volume_microfone() * 2000
 
         # Debug: imprimir o volume capturado
         print(f'Volume Capturado: {volume}')
 
         # Se o volume for maior que a sensibilidade do som o personagem sobe
         if volume > sensi_som:
-            v_minion -= 0.5 * volume 
+            v_minion -= 1 * volume 
         # Se não ele cai com a gravidade
         else:
             v_minion += gravidade # Para cair mais rápido podemos aumentar a gravidade
         
         # Multiplicando a velocidade do personagem pelo amortecimento para ele parar de cair
         v_minion *= amortecimento
-        minion.speed_y = v_minion 
+        minion.rect.y += v_minion 
 
         minion.update()
         # Debug: imprimir a velocidade do minion
