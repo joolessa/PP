@@ -69,7 +69,6 @@ def tela_de_jogo(tela):
 
         minion.update()
 
-
         # ATENÇÃO: Não deixar o personagem sair da tela	
         if minion.rect.bottom > tamanho_tela[1]:
             minion.rect.bottom = tamanho_tela[1]
