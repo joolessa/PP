@@ -54,7 +54,10 @@ def tela_de_jogo(tela):
         all_sprites.draw(tela)
 
         # Multiplicando por 20 para aumentar a sensibilidade do som
-        volume = volume_microfone() * 200
+        volume = volume_microfone() * 500
+
+        # Debug: imprimir o volume capturado
+        print(f'Volume Capturado: {volume}')
 
         # Se o volume for maior que a sensibilidade do som o personagem sobe
         if volume > sensi_som:
@@ -68,6 +71,8 @@ def tela_de_jogo(tela):
         minion.speed_y = v_minion 
 
         minion.update()
+        # Debug: imprimir a velocidade do minion
+        print(f'v_minion: {v_minion}, minion.rect.y: {minion.rect.y}')
 
         # ATENÇÃO: Não deixar o personagem sair da tela	
         if minion.rect.bottom > tamanho_tela[1]:
