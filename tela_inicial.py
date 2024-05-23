@@ -19,9 +19,9 @@ def tela_inicial(tela):
 
     # Posicione o texto no centro da tela
     pos_texto1 = texto1.get_rect(center=((width// 2), (height // 2)-300))
-    pos_texto2 = texto2.get_rect(center=((width// 2)-10, (height // 2)+100)
-    pos_texto3 = texto4.get_rect(center=((width// 2)-10, (height // 2)-200))
-    pos_texto4 = texto4.get_rect(center=((width// 2)-10, (height // 2)-100))
+    pos_texto2 = texto2.get_rect(center=((width// 2)-10, (height // 2)+100))
+    pos_texto3 = texto4.get_rect(center=((width// 2)+5, (height // 2)-200))
+    pos_texto4 = texto4.get_rect(center=((width// 2)+10, (height // 2)-100))
     pos_texto5 = texto4.get_rect(center=((width// 2)-10, (height // 2)+350))
 
     #trecho extraido de https://dessoft.insper-comp.com.br/conteudo/projeto

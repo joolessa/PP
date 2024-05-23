@@ -9,7 +9,7 @@ from constantes import *
 from assets import load_assets
 from tela_inicial import *
 from tela_final import game_over
-from explosao import Explosao
+from explosao import Explosion
 
 def volume_microfone(duracao=0.05, fs=44100):
     gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
@@ -38,7 +38,7 @@ def tela_de_jogo(tela):
     # dimensões
     minion = Minion(assets, 200, 200)
     piso = Piso(assets, 650, height)
-    teto = Teto(assets, 650, 70)
+    teto = Teto(assets, 650, 60)
     all_sprites.add(minion, piso, teto)
     # velocidades
     v_minion = 0 # velocidade inicial do minion 
