@@ -9,6 +9,7 @@ from constantes import *
 from assets import load_assets
 from tela_inicial import *
 from tela_final import game_over
+from explosao import Explosao
 
 def volume_microfone(duracao=0.05, fs=44100):
     gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
@@ -30,9 +31,11 @@ def tela_de_jogo(tela):
     inicio_rodada = pygame.time.get_ticks()
     tempo_jogo = 0
 
-    # Adicionando Sprites (minion, piso, teto e espinhos)
+    # Adicionando Sprites (minion, piso, teto, espinhos e explosão)
     all_sprites = pygame.sprite.Group()
     espinhos_group = pygame.sprite.Group()
+    explosao_group = pygame.sprites.Group()
+    
     # dimensões
     minion = Minion(assets, 200, 200)
     piso = Piso(assets, 650, height)
@@ -63,12 +66,19 @@ def tela_de_jogo(tela):
             elif event.type == adicionar_espinhos_event:
                 if not espinhos_group: # queremos só um espinho por vez na tela
                     adicionar_espinhos()
+            elif event.type == pygame.sprite.spritecollide(minion, espinhos_group, False) or pygame.sprite.collide_rect(minion, piso) or pygame.sprite.collide_rect(minion, teto):
+                pos = minion.rect.topleft
+                explosao = Explosao(pos[0], pos[1])
+                explosao_group.add(explosao)
 
         all_sprites.update()
         espinhos_group.update()
+        explosao_group.update()
 
         # Collided
         if pygame.sprite.spritecollide(minion, espinhos_group, False) or pygame.sprite.collide_rect(minion, piso) or pygame.sprite.collide_rect(minion, teto):
+            explosao_group.draw(tela)
+            pygame.time.delay(1000)
             game_over(tela, fonte,duracao_rodada)
 
         # Montagem de fundo e personagem
