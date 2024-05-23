@@ -59,6 +59,7 @@ def tela_de_jogo(tela):
 
     # LOOPING PRINCIPAL
     while game:
+        print("Loop is running") # DEBBUG
         tempo.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
