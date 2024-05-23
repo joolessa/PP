@@ -10,3 +10,4 @@ Como rodar no Git: Rode o código JOGO.py no main do Git
 
   
 - Adicionar um vídeo sobre o jogo (poucos segundos)
+https://youtu.be/zf2bTirpoHA?si=pi6ygW4cglGuT_Lv 
