@@ -34,7 +34,7 @@ def tela_de_jogo(tela):
     # Adicionando Sprites (minion, piso, teto, espinhos e explosão)
     all_sprites = pygame.sprite.Group()
     espinhos_group = pygame.sprite.Group()
-    explosao_group = pygame.sprites.Group()
+    explosao_group = pygame.sprite.Group()
     
     # dimensões
     minion = Minion(assets, 200, 200)
