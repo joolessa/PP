@@ -8,7 +8,7 @@ def tela_inicial(tela):
     clock = pygame.time.Clock()  
 
     #trecho extraido de chat.openai.com
-    fonte = pygame.font.Font(None, 60) # Você também pode fornecer o nome de uma fonte e o tamanho
+    fonte = pygame.font.Font(None, 40) # Você também pode fornecer o nome de uma fonte e o tamanho
 
     # Renderize o texto desejado
     texto1 = fonte.render("Bem Vindo ao PP game!", True, branco)
@@ -19,10 +19,10 @@ def tela_inicial(tela):
 
     # Posicione o texto no centro da tela
     pos_texto1 = texto1.get_rect(center=((width// 2), (height // 2)-300))
-    pos_texto2 = texto2.get_rect(center=((width// 2)-10, (height // 2)+100))
+    pos_texto2 = texto2.get_rect(center=((width// 2)-10, (height // 2)+350))
     pos_texto3 = texto4.get_rect(center=((width// 2)-20, (height // 2)-200))
     pos_texto4 = texto4.get_rect(center=((width// 2)-10, (height // 2)-100))
-    pos_texto5 = texto4.get_rect(center=((width// 2)-10, (height // 2)+350))
+    pos_texto5 = texto4.get_rect(center=((width// 2), (height // 2)-50))
 
     #trecho extraido de https://dessoft.insper-comp.com.br/conteudo/projeto
     running = True
