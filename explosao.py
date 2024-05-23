@@ -1,5 +1,5 @@
 import pygame
-from pygame.sprite import _Group
+from pygame.sprite import Group
 
 # Código retirado do seguinte link: https://www.youtube.com/watch?v=d06aVDzOfV8
 class Explosao(pygame.sprite.Sprite):
