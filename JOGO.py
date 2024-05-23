@@ -39,7 +39,7 @@ def tela_de_jogo(tela):
     # dimensões
     minion = Minion(assets, 200, 200)
     piso = Piso(assets, 650, height)
-    teto = Teto(assets, 650, 70)
+    teto = Teto(assets, 650, 60)
     all_sprites.add(minion, piso, teto)
     # velocidades
     v_minion = 0 # velocidade inicial do minion 
