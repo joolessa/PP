@@ -105,7 +105,7 @@ def tela_de_jogo(tela):
         tempo_jogo += 1
         if tempo_jogo % 600 == 0:  # A cada 10 segundos aumenta a velocidade dos espinhos
             velocidade_espinhos += 1
-            print(f'Nova velocidade dos espinhos: {velocidade_espinhos}')
+            print(f'Nova velocidade dos espinhos: {velocidade_espinhos}') # DEBBUG
 
         # Textos na tela
         duracao_rodada = (pygame.time.get_ticks() - inicio_rodada) / 1000
