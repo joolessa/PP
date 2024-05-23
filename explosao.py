@@ -3,7 +3,7 @@ from pygame.sprite import Group
 from assets import load_assets
 
 # Código retirado do seguinte link: https://www.youtube.com/watch?v=d06aVDzOfV8
-class Explosion(pygame.sprite.Sprite):
+class Explosao(pygame.sprite.Sprite):
     def __init__(self, assets, center):
         pygame.sprite.Sprite.__init__(self)
         self.exp_anim = assets['exp_anim']
