@@ -19,7 +19,7 @@ class Explosao(pygame.sprite.Sprite):
             self.last_update = now
             self.frame += 1
             if self.frame >= len(self.exp_anim):
-                self.kill()
+                self.kill()  
             else:
                 self.image = self.exp_anim[self.frame]
                 self.rect = self.image.get_rect(center=self.rect.center)
