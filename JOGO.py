@@ -34,12 +34,11 @@ def tela_de_jogo(tela):
     # Adicionando Sprites (minion, piso, teto, espinhos e explosão)
     all_sprites = pygame.sprite.Group()
     espinhos_group = pygame.sprite.Group()
-    explosao_group = pygame.sprite.Group()
     
     # dimensões
     minion = Minion(assets, 200, 200)
     piso = Piso(assets, 650, height)
-    teto = Teto(assets, 650, 60)
+    teto = Teto(assets, 650, 70)
     all_sprites.add(minion, piso, teto)
     # velocidades
     v_minion = 0 # velocidade inicial do minion 
@@ -67,18 +66,14 @@ def tela_de_jogo(tela):
             elif event.type == adicionar_espinhos_event:
                 if not espinhos_group: # queremos só um espinho por vez na tela
                     adicionar_espinhos()
-            elif event.type == pygame.sprite.spritecollide(minion, espinhos_group, False) or pygame.sprite.collide_rect(minion, piso) or pygame.sprite.collide_rect(minion, teto):
-                pos = minion.rect.topleft
-                explosao = Explosao(pos[0], pos[1])
-                explosao_group.add(explosao)
 
         all_sprites.update()
         espinhos_group.update()
-        explosao_group.update()
 
         # Collided
         if pygame.sprite.spritecollide(minion, espinhos_group, False) or pygame.sprite.collide_rect(minion, piso) or pygame.sprite.collide_rect(minion, teto):
-            explosao_group.draw(tela)
+            explosao = Explosao(assets, minion.rect.center)
+            all_sprites.add(explosao)
             pygame.time.delay(1000)
             game_over(tela, fonte,duracao_rodada)
 

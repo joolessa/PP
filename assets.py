@@ -9,5 +9,11 @@ def load_assets():
     assets['piso'] = pygame.image.load('Imagens/piso.PNG')
     assets['teto'] = pygame.image.load('Imagens/teto.PNG')
     assets['espinhos'] = pygame.image.load('Imagens/obstaculo.png')
-    
+    assets['exp_anim'] = [
+    pygame.image.load('Imagens/exp1.png'),
+    pygame.image.load('Imagens/exp2.png'),
+    pygame.image.load('Imagens/exp3.png'),
+    pygame.image.load('Imagens/exp4.png'),
+    pygame.image.load('Imagens/exp5.png')
+]
     return assets

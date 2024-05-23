@@ -1,29 +1,28 @@
 import pygame
 from pygame.sprite import Group
+from assets import load_assets
 
 # Código retirado do seguinte link: https://www.youtube.com/watch?v=d06aVDzOfV8
-class Explosao(pygame.sprite.Sprite):
-    def __init__(self, x,y):
+class Explosion(pygame.sprite.Sprite):
+    def __init__(self, assets, center):
         pygame.sprite.Sprite.__init__(self)
-        self.images = []
-        for num in range(1,6):
-            image = pygame.image.load('Imagens/exp{}.png'.format(num))
-            image = pygame.transform.scale(image, (100,100)) # Tamanho da explosão
-            self.images.append(image)
-        self.index = 0
-        self.image = self.images[self.index]
+        self.exp_anim = assets['exp_anim']
+        self.image = self.exp_anim
         self.rect = self.image.get_rect()
-        self.rect.center = [x,y]
-        self.counter = 0
+        self.rect.center = center
+        self.frame = 0
+        self.last_update = pygame.time.get_ticks()
+        self.frame_rate = 50 
 
     def update(self):
-        velocidade_explosao = 4
-        self.counter += 1
-        
-        if self.counter >= velocidade_explosao and self.index < len(self.images)-1:
-            self.counter = 0
-            self.index += 1
-            self.image = self.images[self.index]
-
-        if self.index >= len(self.images)-1 and self.counter >= velocidade_explosao:
-            self.kill()
+        now = pygame.time.get_ticks()
+        if now - self.last_update > self.frame_rate:
+            self.last_update = now
+            self.frame += 1
+            if self.frame == len(self.exp_anim): 
+                self.kill()
+            else:
+                center = self.rect.center
+                self.image = self.exp_anim[self.frame]
+                self.rect = self.image.get_rect()
+                self.rect.center = center
