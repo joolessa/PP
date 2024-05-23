@@ -18,11 +18,11 @@ def tela_inicial(tela):
     texto5 = fonte.render("do piso e os que estão vindo em sua direção da direita!", True, branco)
 
     # Posicione o texto no centro da tela
-    pos_texto1 = texto1.get_rect(center=((width// 2), (height // 2)-300))
+    pos_texto1 = texto1.get_rect(center=((width// 2), (height // 2)-200))
     pos_texto2 = texto2.get_rect(center=((width// 2)-10, (height // 2)+350))
-    pos_texto3 = texto4.get_rect(center=((width// 2)-20, (height // 2)-200))
-    pos_texto4 = texto4.get_rect(center=((width// 2)-10, (height // 2)-100))
-    pos_texto5 = texto4.get_rect(center=((width// 2), (height // 2)-50))
+    pos_texto3 = texto4.get_rect(center=((width// 2)-20, (height // 2)-100))
+    pos_texto4 = texto4.get_rect(center=((width// 2)-10, (height // 2)-50))
+    pos_texto5 = texto4.get_rect(center=((width// 2), (height // 2)+10))
 
     #trecho extraido de https://dessoft.insper-comp.com.br/conteudo/projeto
     running = True
