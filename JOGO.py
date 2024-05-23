@@ -9,7 +9,6 @@ from constantes import *
 from assets import load_assets
 from tela_inicial import *
 from tela_final import game_over
-from explosao import Explosao
 
 def volume_microfone(duracao=0.05, fs=44100):
     gravacao = sd.rec(int(duracao * fs), samplerate=fs, channels=1, dtype='float32')
