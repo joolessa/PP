@@ -74,9 +74,7 @@ def tela_de_jogo(tela):
         if pygame.sprite.spritecollide(minion, espinhos_group, False) or pygame.sprite.collide_rect(minion, piso) or pygame.sprite.collide_rect(minion, teto):
             som_exp = pygame.mixer.Sound('Sons/explosion.mp3')
             pygame.time.delay(1000)
-            explosao = Explosao(assets, minion.rect.center)
             som_exp.play()
-            all_sprites.add(explosao)
             pygame.time.delay(5000)
             game_over(tela, fonte,duracao_rodada)
 
