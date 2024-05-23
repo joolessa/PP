@@ -56,7 +56,7 @@ def tela_de_jogo(tela):
 
     # LOOPING PRINCIPAL
     while game:
-        tempo.tick(60)
+        tempo.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game = False
