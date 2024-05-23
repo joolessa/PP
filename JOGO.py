@@ -1,7 +1,6 @@
 import pygame
 import sounddevice as sd
 import numpy as np
-import random
 from personagem import Minion
 from piso import Piso
 from teto import Teto
