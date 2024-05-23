@@ -17,6 +17,9 @@ def load_assets():
     pygame.image.load('Imagens/exp5.png')]
 
     # Código gerado por https://chatgpt.com/?model=gpt-4 
-    scale_factor = 2  # Adjust scale factor as needed for desired size
-    assets['explosion_frames'] = [pygame.transform.scale(pygame.image.load(f'Imagens/{img}').convert_alpha(), (int(width * scale_factor), int(height * scale_factor))) for img in assets['exp_anim']]
+    explosion_images = ['exp1.png', 'exp2.png', 'exp3.png', 'exp4.png', 'exp5.png']
+    scale_factor = 2  # Scale factor to increase the size of the explosion images
+
+    assets['explosion_frames'] = [pygame.transform.scale(pygame.image.load(f'Imagens/{img}').convert_alpha(), 
+                                  (int(80 * scale_factor), int(80 * scale_factor))) for img in explosion_images]
     return assets
