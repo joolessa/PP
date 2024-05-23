@@ -40,7 +40,7 @@ def tela_de_jogo(tela):
     all_sprites.add(minion, piso, teto)
     # velocidades
     v_minion = 0 # velocidade inicial do minion 
-    velocidade_espinhos = 100  # velocidade inicial dos espinhos 
+    velocidade_espinhos = 50  # velocidade inicial dos espinhos 
 
     # Função para adicionar espinhos
     def adicionar_espinhos():
