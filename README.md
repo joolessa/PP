@@ -1,5 +1,5 @@
 # PP Game
-## Joana Lessa, Maria Clara Garcia, Valentina Meirelles
+## Joana Lessa e Valentina Meirelles
 
  ### Projeto Final de DeSoft
 
