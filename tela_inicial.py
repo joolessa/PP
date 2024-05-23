@@ -22,7 +22,7 @@ def tela_inicial(tela):
     pos_texto2 = texto2.get_rect(center=((width// 2)-10, (height // 2)+350))
     pos_texto3 = texto4.get_rect(center=((width// 2)-20, (height // 2)-100))
     pos_texto4 = texto4.get_rect(center=((width// 2)-10, (height // 2)-50))
-    pos_texto5 = texto4.get_rect(center=((width// 2), (height // 2)+10))
+    pos_texto5 = texto4.get_rect(center=((width// 2)-10, (height // 2)+10))
 
     #trecho extraido de https://dessoft.insper-comp.com.br/conteudo/projeto
     running = True
